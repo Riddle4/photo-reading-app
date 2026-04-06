@@ -45,7 +45,7 @@ analyzeBtn.addEventListener("click", async () => {
     }
 
     statusBox.textContent = "Analyse terminée.";
-    resultBox.textContent = data.result;
+    resultBox.innerHTML = data.result.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
   } catch (error) {
     statusBox.textContent = "Une erreur est survenue.";
     resultBox.textContent = error.message;
