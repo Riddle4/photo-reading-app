@@ -1,6 +1,7 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #f5f5f5;
+  font-family: Georgia, serif;
+  background: #0b0b0b;
+  color: #eaeaea;
   margin: 0;
   padding: 30px;
 }
@@ -8,14 +9,20 @@ body {
 .container {
   max-width: 760px;
   margin: 0 auto;
-  background: white;
+  background: #121212;
   padding: 24px;
   border-radius: 14px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.6);
 }
 
 h1 {
   margin-top: 0;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+p {
+  color: #bbbbbb;
 }
 
 input, button {
@@ -28,6 +35,13 @@ button {
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  background: #1f1f1f;
+  color: #ffffff;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: #2e2e2e;
 }
 
 #previewWrap {
@@ -43,10 +57,12 @@ button {
 #status {
   margin-top: 20px;
   font-style: italic;
+  color: #888;
 }
 
 #result {
   margin-top: 20px;
   white-space: pre-wrap;
-  line-height: 1.6;
+  line-height: 1.7;
+  color: #eaeaea;
 }
