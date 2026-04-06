@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interprétation photo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Analyse d’une photo</h1>
+    <p>Charge une image, puis lance l’interprétation.</p>
+
+    <input type="file" id="photoInput" accept="image/*" />
+    <button id="analyzeBtn">Analyser la photo</button>
+
+    <div id="previewWrap">
+      <img id="preview" alt="Aperçu" />
+    </div>
+
+    <div id="status"></div>
+    <div id="result"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
