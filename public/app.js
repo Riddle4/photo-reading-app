@@ -25,6 +25,8 @@ analyzeBtn.addEventListener("click", async () => {
   }
 
   statusBox.textContent = "Analyse en cours...";
+  analyzeBtn.disabled = true;
+  analyzeBtn.disabled = false;
   resultBox.textContent = "";
 
   const formData = new FormData();
