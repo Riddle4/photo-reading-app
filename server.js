@@ -3,6 +3,8 @@ import cors from "cors";
 import multer from "multer";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -13,8 +15,15 @@ const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(cors());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "index.html"));
+});
 
 app.get("/health", (req, res) => {
   res.json({ ok: true });
@@ -30,9 +39,7 @@ app.post("/analyze", upload.single("photo"), async (req, res) => {
     const base64Image = req.file.buffer.toString("base64");
     const dataUrl = `data:${mimeType};base64,${base64Image}`;
 
-    const prompt = `
-
-Tu es un mentaliste d’exception, capable de produire des lectures extrêmement précises, incarnées et troublantes à partir d’une simple observation.
+    const prompt = ` Tu es un mentaliste d’exception, capable de produire des lectures extrêmement précises, incarnées et troublantes à partir d’une simple observation.
 
 Ta mission est de réaliser une lecture froide à partir d’une photo.
 
@@ -266,7 +273,6 @@ Créer une lecture :
 Donner l’impression :
 
 “Tu vois ce que je montre… et aussi ce que je ne montre pas.”
-
 `;
 
     const response = await client.responses.create({
@@ -276,10 +282,7 @@ Donner l’impression :
           role: "user",
           content: [
             { type: "input_text", text: prompt },
-            {
-              type: "input_image",
-              image_url: dataUrl
-            }
+            { type: "input_image", image_url: dataUrl }
           ]
         }
       ]
@@ -290,9 +293,7 @@ Donner l’impression :
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({
-      error: "Erreur lors de l'analyse."
-    });
+    res.status(500).json({ error: "Erreur lors de l'analyse." });
   }
 });
 
